@@ -1,12 +1,10 @@
-import json
-from architecture.utils.object_util import ObjectUtil
 from rest_framework.viewsets import ViewSet
 from .serializer.person_serializer import PersonSerializer
 from person.models.person import Person
 from rest_framework.response import Response
 from rest_framework import status
 from person.api.service import PersonService
-from person.enum.enum_generic_status import EnumGenericStatus
+from core.enums.enum_generic_status import EnumGenericStatus
 from rest_framework.decorators import action
 
 

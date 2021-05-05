@@ -6,7 +6,7 @@ from architecture.utils.integer_util import IntegerUtil
 from architecture.utils.date_util import DateUtil
 from architecture.utils.datatable_util import DataTableUtil
 from person.models.person_vo import PersonVO
-from person.enum.enum_generic_status import EnumGenericStatus
+from core.enums.enum_generic_status import EnumGenericStatus
 
 
 class PersonService(object):

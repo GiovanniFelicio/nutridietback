@@ -2,7 +2,7 @@ from core.interfaces.abstract_model import AbstractModel
 from django.db import models
 from person.api.manager import PersonManager
 from person.enum.enum_genre_person import EnumGenrePerson
-from person.enum.enum_generic_status import EnumGenericStatus
+from core.enums.enum_generic_status import EnumGenericStatus
 from architecture.utils.object_util import ObjectUtil
 
 

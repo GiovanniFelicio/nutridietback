@@ -8,7 +8,7 @@ class PersonVO:
     GENRE = AbstractVO('genre', 'Genre')
     STATUS = AbstractVO('status', 'Status')
 
-    values = [NAME, DATE_BIRTH,DOCUMENT, GENRE, STATUS]
+    values = [NAME, DATE_BIRTH, DOCUMENT, GENRE, STATUS]
 
     @classmethod
     def get_values(cls):

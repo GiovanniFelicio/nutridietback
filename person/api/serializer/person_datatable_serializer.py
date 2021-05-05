@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from core.interfaces import abstract_serializer
-from person.enum.enum_generic_status import EnumGenericStatus
+from core.enums.enum_generic_status import EnumGenericStatus
 from person.enum.enum_genre_person import EnumGenrePerson
 
 

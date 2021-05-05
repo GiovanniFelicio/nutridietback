@@ -1,5 +1,5 @@
 from django.db import models
-from person.enum.enum_generic_status import EnumGenericStatus
+from core.enums.enum_generic_status import EnumGenericStatus
 
 
 class PersonManager(models.Manager):

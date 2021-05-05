@@ -2,8 +2,8 @@ from core.interfaces.abstract_model import AbstractModel
 from django.db import models
 from person.api.manager import PersonManager
 from person.models.person import Person
-from person.enum.enum_generic_type import EnumGenericType
-from person.enum.enum_generic_status import EnumGenericStatus
+from core.enums.enum_generic_type import EnumGenericType
+from core.enums.enum_generic_status import EnumGenericStatus
 
 
 class PersonPhone(models.Model, AbstractModel):
