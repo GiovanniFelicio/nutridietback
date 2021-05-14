@@ -2,5 +2,8 @@ from rest_framework.routers import DefaultRouter
 from person.api.viewset import PersonViewSet
 
 router = DefaultRouter()
-router.register(r'person', PersonViewSet, basename='person')
+
+BASE_PATH_MODULE = 'core/'
+
+router.register(r'{}person'.format(BASE_PATH_MODULE), PersonViewSet, basename='person')
 

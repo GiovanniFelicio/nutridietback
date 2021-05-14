@@ -5,10 +5,10 @@ class PersonVO:
     NAME = AbstractVO('name', 'Name')
     DATE_BIRTH = AbstractVO('date_birth', 'Birth')
     DOCUMENT = AbstractVO('document', 'Document')
-    GENRE = AbstractVO('genre', 'Genre')
+    GENDER = AbstractVO('gender', 'Gender')
     STATUS = AbstractVO('status', 'Status')
 
-    values = [NAME, DATE_BIRTH, DOCUMENT, GENRE, STATUS]
+    values = [NAME, DATE_BIRTH, DOCUMENT, GENDER, STATUS]
 
     @classmethod
     def get_values(cls):

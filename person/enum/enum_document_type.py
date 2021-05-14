@@ -1,9 +1,10 @@
 from enum import Enum
 
 
-class EnumGenrePerson(Enum):
-    MALE = 'M'
-    FEMALE = 'F'
+class EnumDocumentType(Enum):
+    CPF = 'CPF'
+    CNPJ = 'CNPJ'
+    RG = 'RG'
 
     @classmethod
     def choices(cls):

@@ -6,6 +6,7 @@ class Apps(object):
             'core',
             'patient',
             'professional',
-            'person'
+            'person',
+            'windows'
         ]
         return apps

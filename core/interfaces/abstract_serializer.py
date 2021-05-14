@@ -9,6 +9,4 @@ class AbstractSerializer(serializers.Serializer):
         if not self.is_valid():
             raise UnprocessableForm()
 
-        model = cls(self.data)
-
-        return model
+        return cls(**self.data)
