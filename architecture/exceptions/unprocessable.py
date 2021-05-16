@@ -1,4 +1,4 @@
-from rest_framework.exceptions import APIException
+from rest_framework.exceptions import APIException, ErrorDetail
 
 STATUS_CODE = 422
 
@@ -7,6 +7,24 @@ class UnprocessableForm(APIException):
     status_code = STATUS_CODE
     default_detail = 'Formulário não é válido'
     default_code = 'form_not_valid'
+    detail = None
+
+    def __init__(self, errors):
+        _detail_message = self.resolve(errors)
+
+        UnprocessableForm.detail = _detail_message
+
+    def resolve(self, errors):
+        _detail_message = ''
+        for error in errors:
+            if type(errors[error]) == dict:
+                _detail_message += self.resolve(errors[error])
+            else:
+                messages: list[ErrorDetail] = errors[error]
+                for message in messages:
+                    _detail_message += '\n {}'.format(message)
+
+        return _detail_message
 
 
 class UnprocessablePatternDate(APIException):

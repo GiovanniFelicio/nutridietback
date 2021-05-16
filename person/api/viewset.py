@@ -1,6 +1,7 @@
 from rest_framework.viewsets import ViewSet
 
 from architecture.exceptions.unprocessable import CustomUnprocessable
+from core.enums.enum_messages_validate import EnumMessagesValidate
 from .serializer.person_serializer import PersonSerializer
 from person.models.person import Person
 from rest_framework.response import Response
@@ -14,7 +15,7 @@ class PersonViewSet(ViewSet):
     personService = PersonService()
 
     def retrieve(self, request, pk=None):
-        person: Person = Person.manager.get(pk=pk)
+        person: Person = Person.objects.get(pk=pk)
         serializer = PersonSerializer(person)
 
         return Response(serializer.data)
@@ -27,7 +28,7 @@ class PersonViewSet(ViewSet):
     def create(self, request, *args, **kwargs) -> Response:
         ds = PersonSerializer(data=request.data)
 
-        person = self.personService.resolve_person_for_create(ds)
+        person = self.personService.create_person(ds)
 
         return Response({'id': person.id, 'message': 'Criado com Sucesso !!'}, status=status.HTTP_201_CREATED)
 

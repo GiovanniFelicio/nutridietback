@@ -1,9 +1,13 @@
+from django.db import transaction
 from rest_framework.utils.serializer_helpers import ReturnDict
 
+from architecture.exceptions.badrequest import BadRequestCRUD
 from architecture.exceptions.conflict import CustomConflict
 from architecture.exceptions.enum_nd_exception_messages import EnumNDExceptionMessages
 from architecture.exceptions.unprocessable import UnprocessableForm
 from core.service.CrudService import CrudService
+from person.api.serializer.person_address_serializer import PersonAddressSerializer
+from person.models import PersonAddress
 from person.models.person import Person
 from person.api.serializer.person_serializer import PersonSerializer
 from person.api.serializer.person_datatable_serializer import PersonDataTableSerializer
@@ -27,15 +31,22 @@ class PersonService(CrudService):
         if not is_valid_document or not is_valid_birth:
             raise
 
+    def create_person(self, serializer: PersonSerializer):
+        data = self.resolve_person_for_create(serializer)
+        person = None
+
+        try:
+            with transaction.atomic():
+                person = serializer.create(data)
+        except Exception as ex:
+            raise BadRequestCRUD()
+
+        return person
+
     def resolve_person_for_create(self, serializer: PersonSerializer):
         data = self.resolve_person(serializer)
 
-        person = Person.manager.find_by_document(document=data['document'])
-
-        if person.exists():
-            raise CustomConflict(EnumNDExceptionMessages.PERSON_DUPLICATE_INSERTED.value.format(data['document']))
-
-        return self.create(**data)
+        return data
 
     def resolve_person_for_update(self, pk: int, serializer: PersonSerializer):
         data = self.resolve_person(serializer)
@@ -47,8 +58,9 @@ class PersonService(CrudService):
         return self.delete(pk)
 
     def resolve_person(self, serializer: PersonSerializer):
+
         if not serializer.is_valid():
-            raise UnprocessableForm()
+            raise UnprocessableForm(serializer.errors)
 
         data: ReturnDict = serializer.data
         data['document'] = IntegerUtil.only_numbers(data['document'])
@@ -61,3 +73,11 @@ class PersonService(CrudService):
         persons = Person.manager.filter(status=EnumGenericStatus.ENABLED.value)
 
         return DataTableUtil.query_datatable(persons, PersonVO, PersonDataTableSerializer, request_data)
+
+    def resolv_person_address(self, address) -> PersonAddress:
+        serializer = PersonAddressSerializer(data=address)
+
+        if not serializer.is_valid():
+            raise UnprocessableForm()
+
+        return None

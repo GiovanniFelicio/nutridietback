@@ -4,7 +4,6 @@ from person.api.manager import PersonManager
 from person.enum.enum_document_type import EnumDocumentType
 from person.enum.enum_gender_person import EnumGenderPerson
 from core.enums.enum_generic_status import EnumGenericStatus
-from architecture.utils.object_util import ObjectUtil
 
 
 class Person(models.Model, AbstractModel):
@@ -15,7 +14,7 @@ class Person(models.Model, AbstractModel):
     gender = models.CharField(choices=EnumGenderPerson.choices(), max_length=6)
     status = models.SmallIntegerField(choices=EnumGenericStatus.choices(), default=EnumGenericStatus.ENABLED)
 
-    manager = PersonManager()
+    objects = PersonManager()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
