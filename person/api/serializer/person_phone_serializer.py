@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from core.interfaces import abstract_serializer
-from core.enums.enum_generic_type import EnumGenericType
-from core.enums.enum_generic_status import EnumGenericStatus
+from core.common.interfaces import abstract_serializer
+from core.common.enums.enum_generic_type import EnumGenericType
+from core.common.enums.enum_generic_status import EnumGenericStatus
 
 
 class PersonPhoneSerializer(abstract_serializer.AbstractSerializer):

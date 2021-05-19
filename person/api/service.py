@@ -2,8 +2,6 @@ from django.db import transaction
 from rest_framework.utils.serializer_helpers import ReturnDict
 
 from architecture.exceptions.badrequest import BadRequestCRUD
-from architecture.exceptions.conflict import CustomConflict
-from architecture.exceptions.enum_nd_exception_messages import EnumNDExceptionMessages
 from architecture.exceptions.unprocessable import UnprocessableForm
 from core.service.CrudService import CrudService
 from person.api.serializer.person_address_serializer import PersonAddressSerializer
@@ -16,7 +14,7 @@ from architecture.utils.integer_util import IntegerUtil
 from architecture.utils.date_util import DateUtil
 from architecture.utils.datatable_util import DataTableUtil
 from person.models.person_vo import PersonVO
-from core.enums.enum_generic_status import EnumGenericStatus
+from core.common.enums.enum_generic_status import EnumGenericStatus
 
 
 class PersonService(CrudService):
@@ -70,7 +68,7 @@ class PersonService(CrudService):
         return data
 
     def resolve_data(self, request_data):
-        persons = Person.manager.filter(status=EnumGenericStatus.ENABLED.value)
+        persons = Person.objects.filter(status=EnumGenericStatus.ENABLED.value)
 
         return DataTableUtil.query_datatable(persons, PersonVO, PersonDataTableSerializer, request_data)
 

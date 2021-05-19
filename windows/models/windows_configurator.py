@@ -1,5 +1,5 @@
 from .windows_vo import WindowsVO
-from core.enums.enum_generic_status import EnumGenericStatus
+from core.common.enums.enum_generic_status import EnumGenericStatus
 
 
 class WindowsConfigurator:

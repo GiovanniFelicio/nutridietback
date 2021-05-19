@@ -1,4 +1,4 @@
-from core.enums.enum_generic_status import EnumGenericStatus
+from core.common.enums.enum_generic_status import EnumGenericStatus
 
 
 class WindowsVO:

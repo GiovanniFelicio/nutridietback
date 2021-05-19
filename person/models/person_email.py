@@ -1,9 +1,9 @@
-from core.interfaces.abstract_model import AbstractModel
+from core.common.interfaces.abstract_model import AbstractModel
 from django.db import models
 from person.api.manager import PersonManager
 from person.models.person import Person
-from core.enums.enum_generic_type import EnumGenericType
-from core.enums.enum_generic_status import EnumGenericStatus
+from core.common.enums.enum_generic_type import EnumGenericType
+from core.common.enums.enum_generic_status import EnumGenericStatus
 
 
 class PersonEmail(models.Model, AbstractModel):

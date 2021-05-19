@@ -1,9 +1,9 @@
-from core.interfaces.abstract_model import AbstractModel
+from core.common.interfaces.abstract_model import AbstractModel
 from django.db import models
 from person.api.manager import PersonManager
 from person.enum.enum_document_type import EnumDocumentType
 from person.enum.enum_gender_person import EnumGenderPerson
-from core.enums.enum_generic_status import EnumGenericStatus
+from core.common.enums.enum_generic_status import EnumGenericStatus
 
 
 class Person(models.Model, AbstractModel):

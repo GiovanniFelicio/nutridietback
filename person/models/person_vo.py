@@ -1,4 +1,4 @@
-from core.interfaces.abstract_vo import AbstractVO
+from core.common.interfaces.abstract_vo import AbstractVO
 
 
 class PersonVO:

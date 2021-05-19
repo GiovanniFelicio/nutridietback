@@ -2,7 +2,6 @@ from django.db import transaction
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
-from architecture.exceptions.badrequest import BadRequestCRUD
 from architecture.exceptions.enum_nd_exception_messages import EnumNDExceptionMessages
 from person.api.serializer.person_address_serializer import PersonAddressSerializer
 from person.models import Person

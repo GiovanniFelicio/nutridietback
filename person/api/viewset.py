@@ -1,17 +1,20 @@
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ViewSet
 
 from architecture.exceptions.unprocessable import CustomUnprocessable
-from core.enums.enum_messages_validate import EnumMessagesValidate
+from core.common.enums.enum_default_response import EnumDefaultResponse
 from .serializer.person_serializer import PersonSerializer
 from person.models.person import Person
 from rest_framework.response import Response
 from rest_framework import status
 from person.api.service import PersonService
-from core.enums.enum_generic_status import EnumGenericStatus
+from core.common.enums.enum_generic_status import EnumGenericStatus
 from rest_framework.decorators import action
 
 
 class PersonViewSet(ViewSet):
+    permission_classes = (IsAuthenticated,)
+
     personService = PersonService()
 
     def retrieve(self, request, pk=None):
@@ -21,7 +24,7 @@ class PersonViewSet(ViewSet):
         return Response(serializer.data)
 
     def list(self, request, *args, **kwargs) -> Response:
-        serializer = PersonSerializer(Person.manager.find_by_status(EnumGenericStatus.ENABLED), many=True)
+        serializer = PersonSerializer(Person.objects.find_by_status(EnumGenericStatus.ENABLED), many=True)
 
         return Response(serializer.data)
 
@@ -30,7 +33,9 @@ class PersonViewSet(ViewSet):
 
         person = self.personService.create_person(ds)
 
-        return Response({'id': person.id, 'message': 'Criado com Sucesso !!'}, status=status.HTTP_201_CREATED)
+        return Response({'id': person.id,
+                         'response': EnumDefaultResponse.SUCCESSFULLY_CREATED},
+                        status=status.HTTP_201_CREATED)
 
     def update(self, request, *args, **kwargs) -> Response:
         ds = PersonSerializer(data=request.data)

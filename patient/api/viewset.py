@@ -1,8 +1,7 @@
-from rest_framework.decorators import action
 from .serializer import PatientSerializer
 from rest_framework.response import Response
 from .service import PatientService
-from core.interfaces.abstract_viewset import AbstractViewSet
+from core.common.interfaces.abstract_viewset import AbstractViewSet
 
 
 class PatientViewSet(AbstractViewSet):
