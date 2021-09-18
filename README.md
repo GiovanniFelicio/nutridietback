@@ -24,11 +24,11 @@ Core Components | Ubuntu | Debian | Docker
 
  No seu navegador acesse:
 
-    http://localhost:8000/api/v1 -> acesso a API
+ http://localhost:8000/api/v1 -> acesso a API
 
-    http://localhost:8000/admin -> acesso ao painel administrativo
+ http://localhost:8000/admin -> acesso ao painel administrativo
 
  Dados para autenticação no painel:
 
-    Usuário: ´admin´
-    Senha: `123456789`
+    Usuário: admin
+    Senha: 123456789
